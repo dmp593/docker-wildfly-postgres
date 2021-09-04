@@ -16,8 +16,6 @@ services:
       - "8080:8080"
       - "9990:9990"
     environment:
-      - WILDFLY_ADMIN_PASSWORD
-      - POSTGRES_DRIVER_VERSION
       - DATASOURCE_JNDI
       - DATASOURCE_NAME
       - DB_USER
@@ -25,6 +23,9 @@ services:
       - DB_HOST
       - DB_PORT
       - DB_NAME
+      - ECLIPSELINK_VERSION
+      - WILDFLY_ADMIN_PASSWORD
+      - POSTGRES_DRIVER_VERSION
     depends_on:
       - db
 
