@@ -28,8 +28,6 @@ services:
       - POSTGRES_DRIVER_VERSION
     depends_on:
       - db
-
-
 volumes:
   postgresql_data:
     driver: local

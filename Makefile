@@ -1,6 +1,10 @@
 .DEFAULT_GOAL := deploy
 
-APPLICATION_NAME ?= "app"
+ifneq (,$(wildcard ./.env))
+    include .env
+    export
+    APPLICATION_NAME ?= app
+endif
 
 up:
 	docker compose up -d
