@@ -22,4 +22,4 @@ build: clean
 	mvn package
 
 deploy: up build
-	docker compose cp target/*.war webserver:/opt/jboss/wildfly/standalone/deployments/${APPLICATION_NAME}.war
+	# docker compose cp target/*.war webserver:/opt/jboss/wildfly/standalone/deployments/${APPLICATION_NAME}.war
