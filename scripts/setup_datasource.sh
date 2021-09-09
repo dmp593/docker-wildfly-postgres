@@ -5,8 +5,8 @@ $JBOSS_CLI -c << EOF
 batch
 
 # Add PostgreSQL driver
-module add --name=org.postgres --resources=/tmp/$POSTGRES_DRIVER_FILENAME --dependencies=javax.api,javax.transaction.api
-/subsystem=datasources/jdbc-driver=postgres:add(driver-name="postgres",driver-module-name="org.postgres",driver-class-name=org.postgresql.Driver)
+module add --name=org.postgresql --resources=/tmp/$POSTGRES_DRIVER_FILENAME --dependencies=javax.api,javax.transaction.api
+/subsystem=datasources/jdbc-driver=postgres:add(driver-name="postgres",driver-module-name="org.postgresql",driver-class-name=org.postgresql.Driver)
 
 # Add the datasource
 data-source add \
