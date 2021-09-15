@@ -6,11 +6,17 @@ ifneq (,$(wildcard ./.env))
     APPLICATION_NAME ?= app
 endif
 
+ifeq ($(OS),Windows_NT)
+    clean_goal := IF EXIST target RD /S /Q target & IF EXIST deployments RD /S /Q deployments & IF NOT EXIST deployments MD deployments
+else
+    clean_goal := rm -rf target out deployments/*
+endif
+
 up:
 	docker compose up -d
 
 clean:
-	rm -rf target out deployments/*
+	$(clean_goal)
 
 down: clean
 	docker compose down --rmi local

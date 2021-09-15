@@ -6,6 +6,9 @@ COPY scripts ${WILDFLY_HOME}/bin
 
 USER root
 
+RUN yum install -y dos2unix
+RUN dos2unix ${WILDFLY_HOME}/bin/*.sh
+
 RUN chown jboss:jboss ${WILDFLY_HOME}/bin/*.sh
 RUN chmod 755 ${WILDFLY_HOME}/bin/*.sh
 
