@@ -40,3 +40,6 @@ monitor: deploy logs
 
 sql:
 	docker compose exec db psql --username ${DB_USER} --password ${DB_NAME}
+
+ps:
+	docker compose ps
