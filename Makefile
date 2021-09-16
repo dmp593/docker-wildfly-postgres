@@ -6,9 +6,9 @@ ifneq (,$(wildcard ./.env))
 endif
 
 ifeq ($(OS),Windows_NT)
-    clean_goal := IF EXIST target RD /S /Q target & IF EXIST deployments RD /S /Q deployments & IF NOT EXIST deployments MD deployments
+    clean_goal := (IF EXIST target RD /S /Q target) & DEL /Q deployments
 else
-    clean_goal := rm -rf target out deployments/*
+    clean_goal := rm -rf target deployments/*
 endif
 
 up:
