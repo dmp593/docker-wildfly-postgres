@@ -3,7 +3,6 @@
 ifneq (,$(wildcard ./.env))
     include .env
     export
-    APPLICATION_NAME ?= app
 endif
 
 ifeq ($(OS),Windows_NT)
@@ -27,7 +26,7 @@ down-all: clean
 build: clean
 	mvn package
 
-deploy: build up
+deploy: clean build up
 
 bash:
 	docker compose exec webserver bash
