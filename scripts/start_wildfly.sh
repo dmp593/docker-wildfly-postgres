@@ -14,6 +14,9 @@ source $WILDFLY_HOME/bin/setup_admin_password.sh
 
 source $WILDFLY_HOME/bin/install_eclipselink.sh
 
+mkdir -p /tmp/deployments
+mv $DEPLOYMENTS_DIR/* /tmp/deployments
+
 echo "=> Starting WildFly server"
 $WILDFLY_HOME/bin/standalone.sh -b=0.0.0.0 -c standalone.xml > /dev/null &
 
@@ -26,6 +29,9 @@ source $WILDFLY_HOME/bin/setup_datasource.sh
 
 echo "=> Shutdown Wildfly"
 $JBOSS_CLI -c ":shutdown"
+
+mv /tmp/deployments/* $DEPLOYMENTS_DIR
+rm -rf /tmp/deployments
 
 touch wildfly.started
 fi

@@ -27,7 +27,7 @@ down-all: clean
 build: clean
 	mvn package
 
-deploy: up build
+deploy: build up
 
 bash:
 	docker compose exec webserver bash

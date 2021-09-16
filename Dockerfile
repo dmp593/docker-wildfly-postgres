@@ -1,6 +1,7 @@
 FROM jboss/wildfly
 
 ENV WILDFLY_HOME=/opt/jboss/wildfly
+ENV DEPLOYMENTS_DIR=${WILDFLY_HOME}/standalone/deployments
 
 COPY scripts ${WILDFLY_HOME}/bin
 
