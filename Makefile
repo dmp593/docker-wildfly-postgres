@@ -19,7 +19,7 @@ clean:
 	$(clean_goal)
 
 down: clean
-	docker compose down --rmi local
+	docker compose down --rmi local --volumes
 
 down-all: clean
 	docker compose down --rmi all --volumes
