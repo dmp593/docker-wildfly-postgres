@@ -1,4 +1,4 @@
-FROM jboss/wildfly
+FROM jboss/wildfly:24.0.0.Final
 
 ENV WILDFLY_HOME=/opt/jboss/wildfly
 ENV DEPLOYMENTS_DIR=${WILDFLY_HOME}/standalone/deployments
