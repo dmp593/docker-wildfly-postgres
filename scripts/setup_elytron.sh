@@ -29,7 +29,7 @@ batch
 /subsystem=elytron/token-realm=jwt-realm:add(jwt={issuer=["$JWT_ISSUER"],audience=["$JWT_AUDIENCE"],key-store=jwt-key-store,certificate="$JWT_ALIAS"},principal-claim="sub")
 
 # Add a new security domain, which uses the jwt security realm
-/subsystem=elytron/security-domain=jwt-domain:add(realms=[{realm=jwt-realm,role-decoder=groups-to-roles}],permission-mapper=default-permission-mapper,default-realm=jwt-realm)
+/subsystem=elytron/security-domain=jwt-domain:add(realms=[{realm=jwt-realm,role-decoder=groups-to-roles}],permission-mapper=default-permission-mapper,default-realm=$JWT_REALM)
 
 # Create http authentication factory that uses BEARER_TOKEN authentication
 /subsystem=elytron/http-authentication-factory=jwt-http-authentication:add(security-domain=jwt-domain,http-server-mechanism-factory=global,mechanism-configurations=[{mechanism-name="BEARER_TOKEN",mechanism-realm-configurations=[{realm-name="$JWT_REALM"}]}])
