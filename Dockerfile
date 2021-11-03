@@ -7,7 +7,7 @@ COPY scripts ${WILDFLY_HOME}/bin
 
 USER root
 
-RUN yum install -y dos2unix
+RUN yum install -y dos2unix nano
 RUN dos2unix ${WILDFLY_HOME}/bin/*.sh
 
 RUN chown jboss:jboss ${WILDFLY_HOME}/bin/*.sh
