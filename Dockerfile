@@ -1,4 +1,5 @@
-FROM jboss/wildfly:latest # if problems with elytron, use: 24.0.0.Final
+# if problems with elytron, use version 24.0.0.Final
+FROM jboss/wildfly:latest
 
 ENV WILDFLY_HOME=/opt/jboss/wildfly
 ENV DEPLOYMENTS_DIR=${WILDFLY_HOME}/standalone/deployments
