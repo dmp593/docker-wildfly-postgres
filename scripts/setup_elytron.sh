@@ -24,8 +24,10 @@ batch
 # Configure Undertow to use our http authentication factory for authentication
 /subsystem=undertow/application-security-domain=other:add(http-authentication-factory=jwt-http-authentication)
 
+# Execute the batch
 run-batch
 
+# Reload the server configuration
 reload
 
 EOF
