@@ -8,7 +8,7 @@ services:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
       - POSTGRES_DB=${DB_NAME}
-  smtpserver:
+  smtp:
     image: ghusta/fakesmtp
     ports:
       - "2525:25"
@@ -43,4 +43,4 @@ services:
       - JWT_REALM
     depends_on:
       - db
-      - smtpserver
+      - smtp
