@@ -12,10 +12,6 @@ function wait_for_server() {
 
 source $WILDFLY_HOME/bin/setup_admin_password.sh
 
-source $WILDFLY_HOME/bin/install_eclipselink.sh
-
-source $WILDFLY_HOME/bin/setup_keystore.sh
-
 mkdir -p /tmp/deployments
 mv $DEPLOYMENTS_DIR/* /tmp/deployments
 
@@ -29,7 +25,6 @@ wait_for_server
 
 source $WILDFLY_HOME/bin/setup_datasource.sh
 source $WILDFLY_HOME/bin/setup_mail.sh
-source $WILDFLY_HOME/bin/setup_elytron.sh
 
 echo "=> Shutdown Wildfly"
 $JBOSS_CLI -c ":shutdown"

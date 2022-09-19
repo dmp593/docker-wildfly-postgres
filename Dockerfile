@@ -1,5 +1,5 @@
 # if problems with elytron, use version 24.0.0.Final
-FROM jboss/wildfly:latest
+FROM quay.io/wildfly/wildfly:latest
 
 ENV WILDFLY_HOME=/opt/jboss/wildfly
 ENV DEPLOYMENTS_DIR=${WILDFLY_HOME}/standalone/deployments
