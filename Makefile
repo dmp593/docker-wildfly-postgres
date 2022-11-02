@@ -36,4 +36,4 @@ deploy: build
 monitor: deploy logs
 
 mails:
-	docker compose exec --workdir /var/mail smtpserver bash
+	docker compose exec --workdir /var/mail smtp bash
