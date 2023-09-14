@@ -1,4 +1,4 @@
-FROM quay.io/wildfly/wildfly:26.1.2.Final
+FROM quay.io/wildfly/wildfly:27.0.0.Final-jdk17
 
 ENV WILDFLY_HOME=/opt/jboss/wildfly
 ENV DEPLOYMENTS_DIR=${WILDFLY_HOME}/standalone/deployments
