@@ -13,17 +13,12 @@ WORKDIR $WILDFLY_HOME
 RUN bin/add-user.sh admin $WILDFLY_ADMIN_PASSWORD --silent
 
 # Downloads scripts that configure datasource and mail, and starts the wildfly server
-ADD ${SCRIPTS_URL}/setup_datasource.sh bin
-ADD ${SCRIPTS_URL}/setup_mail.sh bin
-ADD ${SCRIPTS_URL}/start_wildfly.sh bin
+ADD --chown=jboss:root --chmod=771 ${SCRIPTS_URL}/setup_datasource.sh bin
+ADD --chown=jboss:root --chmod=771 ${SCRIPTS_URL}/setup_mail.sh bin
+ADD --chown=jboss:root --chmod=771 ${SCRIPTS_URL}/start_wildfly.sh bin
 
 # Downloads PostgreSQL Driver
-ADD https://jdbc.postgresql.org/download/postgresql-${POSTGRES_DRIVER_VERSION}.jar /tmp
-
-# Gives permissions to execute the scripts and to copy postgresql driver to wildfly modules
-USER root
-RUN chmod +x bin/*.sh && chown jboss:jboss bin/*.sh && chown jboss:jboss /tmp/*.jar
+ADD --chown=jboss:root --chmod=664 https://jdbc.postgresql.org/download/postgresql-${POSTGRES_DRIVER_VERSION}.jar bin
 
 # Starts the Wildfly Web Server
-USER jboss
 ENTRYPOINT ${WILDFLY_HOME}/bin/start_wildfly.sh
