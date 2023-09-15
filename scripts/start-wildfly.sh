@@ -13,11 +13,11 @@ function wait_for_server() {
 mkdir -p /tmp/deployments
 mv $DEPLOYMENTS_DIR/* /tmp/deployments
 
-echo "===> Starting WildFly <==="
+echo "************************* >>> Starting WildFly <<< *************************"
 $WILDFLY_HOME/bin/standalone.sh -c standalone.xml > /dev/null &
 wait_for_server
 
-echo "===> Setup Datasource <==="
+echo "************************* >>> Setup Datasource <<< *************************"
 $JBOSS_CLI -c << EOF
 batch
 
@@ -43,7 +43,7 @@ data-source add \
 run-batch
 EOF
 
-echo "==> Setup Mail Session (fakeSMTP) <==="
+echo "************************* >>> Setup Mail Session (fakeSMTP) <<< *************************"
 $JBOSS_CLI -c << EOF
 batch
 
@@ -63,7 +63,7 @@ run-batch
 reload
 EOF
 
-echo "==> Shutting Down Wildfly <==="
+echo "************************* >>> Shutting down Wildfly <<< *************************"
 $JBOSS_CLI -c ":shutdown"
 
 mv /tmp/deployments/* $DEPLOYMENTS_DIR
@@ -72,5 +72,5 @@ rm -rf /tmp/deployments
 touch wildfly.started
 fi
 
-echo "=> Starting Wildfly Web Server"
+echo "************************* >>> Starting Wildfly Web Server <<< *************************"
 $WILDFLY_HOME/bin/standalone.sh -b=0.0.0.0 -bmanagement=0.0.0.0 -c standalone.xml
