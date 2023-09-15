@@ -5,7 +5,7 @@ $JBOSS_CLI -c << EOF
 batch
 
 # Add PostgreSQL driver
-module add --name=org.postgresql --resources=bin/postgresql-$POSTGRES_DRIVER_VERSION.jar --dependencies=javax.api,javax.transaction.api
+module add --name=org.postgresql --resources=$WILDFLY_HOME/bin/postgresql-$POSTGRES_DRIVER_VERSION.jar --dependencies=javax.api,javax.transaction.api
 /subsystem=datasources/jdbc-driver=postgres:add(driver-name="postgres",driver-module-name="org.postgresql",driver-class-name=org.postgresql.Driver)
 
 # Add the datasource
