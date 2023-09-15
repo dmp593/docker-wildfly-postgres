@@ -45,8 +45,25 @@ data-source add \
 run-batch
 EOF
 
-echo "=> Setup E-Mail"
-source $WILDFLY_HOME/bin/setup_mail.sh
+echo "=> Setup Mail Session with fakeSMTP"
+$JBOSS_CLI -c << EOF
+batch
+
+# Create the custom fakeSMTP mail session
+/subsystem=mail/mail-session=fakeSMTP:add(jndi-name=java:/jboss/mail/fakeSMTP)
+
+# Configure the custom SMTP socket binding groups
+/socket-binding-group=standard-sockets/remote-destination-outbound-socket-binding=my-mail-smtp:add(host=host.docker.internal,port=2525)
+
+# Add the custom socket binding groups to the custom fakeSMTP mail session
+/subsystem=mail/mail-session=fakeSMTP/server=smtp:add(outbound-socket-binding-ref=my-mail-smtp)
+
+# Run the batch commands
+run-batch
+
+# Reload the server configuration
+reload
+EOF
 
 echo "=> Shutdown Wildfly"
 $JBOSS_CLI -c ":shutdown"
