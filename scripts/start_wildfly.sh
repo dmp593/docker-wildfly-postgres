@@ -10,20 +10,19 @@ function wait_for_server() {
   done
 }
 
-source $WILDFLY_HOME/bin/setup_admin_password.sh
-
 mkdir -p /tmp/deployments
 mv $DEPLOYMENTS_DIR/* /tmp/deployments
 
 echo "=> Starting WildFly server"
 $WILDFLY_HOME/bin/standalone.sh -b=0.0.0.0 -c standalone.xml > /dev/null &
 
-source $WILDFLY_HOME/bin/download_postgresql_driver.sh
-
 echo "=> Waiting for the server to boot"
 wait_for_server
 
+echo "=> Setup Datasource"
 source $WILDFLY_HOME/bin/setup_datasource.sh
+
+echo "=> Setup E-Mail"
 source $WILDFLY_HOME/bin/setup_mail.sh
 
 echo "=> Shutdown Wildfly"
