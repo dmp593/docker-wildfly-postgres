@@ -11,7 +11,7 @@ Make the adjustments you need, to match your needs.
 
 2. Start the containers
 ```bash
-$ docker compose up -d
+$ make up
 ```
 
 ## Stoping / Pausing / Restarting the containers
@@ -22,12 +22,12 @@ Please, check the documentation for more useful command tips [here](https://docs
 
 To stop and remove all the containers, images, volumes and network, run:
 ```bash
-$ docker compose down --rmi all --volumes
+$ make down-all
 ```
 
 ## Alternative: remove only local (custom) images:
 
 ```bash
 # Only removes the custom wildfly image, if you need to rebuild it again.
-$ docker compose down --rmi local
+$ make down
 ```
